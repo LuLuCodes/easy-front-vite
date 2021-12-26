@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ msg1 }}</h1>
+  <h1>{{ msg }}</h1>
 
   <p>
     Recommended IDE setup:{{ count }}
@@ -27,39 +27,37 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, toRefs } from 'vue'
+import { defineComponent, ref } from 'vue'
 
-  export default defineComponent({
-    props: {
-      msg: {
-        type: String,
-      },
+export default defineComponent({
+  props: {
+    msg: {
+      type: String,
     },
-    setup(props) {
-      const count = ref(0)
-      const { msg } = toRefs(props)
-      return {
-        count,
-        msg1: msg,
-      }
-    },
-  })
+  },
+  setup() {
+    const count = ref(1)
+    return {
+      count,
+    }
+  },
+})
 </script>
 
 <style scoped>
-  a {
-    color: #42b983;
-  }
+a {
+  color: #42b983;
+}
 
-  label {
-    margin: 0 0.5em;
-    font-weight: bold;
-  }
+label {
+  margin: 0 0.5em;
+  font-weight: bold;
+}
 
-  code {
-    background-color: #eee;
-    padding: 2px 4px;
-    border-radius: 4px;
-    color: #304455;
-  }
+code {
+  background-color: #eee;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #304455;
+}
 </style>
