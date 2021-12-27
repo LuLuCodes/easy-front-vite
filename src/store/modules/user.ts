@@ -52,7 +52,7 @@ export const useUserStore = defineStore({
     /**
      * @description: logout
      */
-    async logout(goLogin = false) {
+    async logout() {
       if (this.getToken) {
         try {
           // TODO: logout
@@ -62,7 +62,7 @@ export const useUserStore = defineStore({
       }
       this.setToken(undefined)
       this.setUserInfo(null)
-      goLogin && router.push('/login')
+      router.push('/login')
     },
   },
 })
