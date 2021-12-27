@@ -67,3 +67,15 @@ export const withInstall = <T>(component: T, alias?: string) => {
   }
   return component as T & Plugin
 }
+
+export const makeSortStr = (params: object, omit: string[] = []) => {
+  return Object.keys(params)
+    .sort()
+    .filter((key) => params[key] && omit.indexOf(key) === -1)
+    .map((key) => {
+      const value = typeof params[key] === 'object' ? JSON.stringify(params[key]) : params[key]
+      return `${String(key)}=${String(value)}`
+    })
+    .join('&')
+    .trim()
+}

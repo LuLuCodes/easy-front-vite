@@ -1,11 +1,7 @@
 import { isObject, isString } from '/@/utils/is'
+import { encryptByAes } from '/@/utils/cipher'
 
 const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss'
-
-export function joinTimestamp<T extends boolean>(
-  join: boolean,
-  restful: T,
-): T extends true ? string : object
 
 export function joinTimestamp(join: boolean, restful = false): string | object {
   if (!join) {
@@ -16,6 +12,10 @@ export function joinTimestamp(join: boolean, restful = false): string | object {
     return `?timestamp=${now}`
   }
   return { timestamp: now }
+}
+
+export function joinSign(data: string, url: string): object {
+  return { sign: encryptByAes(data, url) }
 }
 
 /**

@@ -9,8 +9,8 @@ import { VAxios } from './Axios'
 import { checkStatus } from './checkStatus'
 import { RequestTypeEnum, ResponseCode, ContentTypeEnum } from '/@/enums/httpEnum'
 import { isString } from '/@/utils/is'
-import { setObjToUrlParams, deepMerge } from '/@/utils'
-import { joinTimestamp, formatRequestDate } from './helper'
+import { deepMerge, makeSortStr } from '/@/utils'
+import { joinTimestamp, joinSign, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '/@/store/modules/user'
 
 const urlPrefix = import.meta.env.VITE_GLOB_API_URL_PREFIX
@@ -50,8 +50,9 @@ const transform: AxiosTransform = {
 
   // 请求之前处理config
   beforeRequestHook: (config, options) => {
-    const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, joinTime = true, urlPrefix } = options
+    const { apiUrl, joinPrefix, formatDate, joinTime = true, urlPrefix } = options
 
+    const urlPath = config.url
     if (joinPrefix) {
       config.url = `${urlPrefix}${config.url}`
     }
@@ -66,6 +67,10 @@ const transform: AxiosTransform = {
       if (!isString(params)) {
         // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false))
+        config.params = Object.assign(
+          config.params || {},
+          joinSign(makeSortStr(config.params), urlPath as string),
+        )
       } else {
         // 兼容restful风格
         config.url = config.url + params + `${joinTimestamp(joinTime, true)}`
@@ -75,19 +80,17 @@ const transform: AxiosTransform = {
       if (!isString(params)) {
         formatDate && formatRequestDate(params)
         if (Reflect.has(config, 'data') && config.data && Object.keys(config.data).length > 0) {
-          config.data = data
+          config.data = Object.assign(data || {}, joinTimestamp(joinTime, false))
           config.params = params
         } else {
           // 非GET请求如果没有提供data，则将params视为data
-          config.data = params
+          config.data = Object.assign(params || {}, joinTimestamp(joinTime, false))
           config.params = undefined
         }
-        if (joinParamsToUrl) {
-          config.url = setObjToUrlParams(
-            config.url as string,
-            Object.assign({}, config.params, config.data),
-          )
-        }
+        config.data = Object.assign(
+          config.data || {},
+          joinSign(makeSortStr(config.data), urlPath as string),
+        )
       } else {
         // 兼容restful风格
         config.url = config.url + params
@@ -171,8 +174,6 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           isReturnNativeResponse: false,
           // 需要对返回数据进行处理
           isTransformResponse: true,
-          // post请求的时候添加参数到url
-          joinParamsToUrl: false,
           // 格式化提交参数时间
           formatDate: true,
           // 接口地址
