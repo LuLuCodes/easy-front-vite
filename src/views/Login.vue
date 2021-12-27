@@ -1,16 +1,14 @@
 <template>
-  <RouterView />
+  <p> This is the Login page. </p>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useTitle } from '/@/hooks/web/useTitle'
 
 export default defineComponent({
-  name: 'App',
+  name: 'LoginPage',
   components: {},
   setup() {
-    useTitle()
     return {}
   },
 })

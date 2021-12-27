@@ -1,16 +1,14 @@
 <template>
-  <RouterView />
+  <p> Page not found. </p>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useTitle } from '/@/hooks/web/useTitle'
 
 export default defineComponent({
-  name: 'App',
+  name: 'PageNotFound',
   components: {},
   setup() {
-    useTitle()
     return {}
   },
 })
