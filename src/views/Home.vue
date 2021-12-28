@@ -2,9 +2,11 @@
   <p> This is the Home page. </p>
   <button @click="post"> test post </button>
   <button @click="get"> test get </button>
+  <button @click="changeMode"> color mode: {{ mode }} </button>
 </template>
 
 <script lang="ts">
+import { useColorMode } from '@vueuse/core'
 import { defineComponent } from 'vue'
 import { Http } from '/@/utils/axios'
 
@@ -38,9 +40,24 @@ export default defineComponent({
         console.log(error)
       }
     }
-    return { post, get }
+    const mode = useColorMode({ selector: 'body' })
+    mode.value = 'dark'
+
+    const changeMode = () => {
+      if (mode.value === 'dark') {
+        mode.value = 'light'
+      } else {
+        mode.value = 'dark'
+      }
+    }
+    return { post, get, mode, changeMode }
   },
 })
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+.dark {
+  background: #222;
+  color: white;
+}
+</style>
