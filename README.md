@@ -7,7 +7,7 @@
 ## 安装依赖
 
 ```shell
-pnpm bootstrap
+pnpm run bootstrap
 ```
 
 ## 第三方库
