@@ -9,7 +9,7 @@ interface UserState {
 }
 
 export const useUserStore = defineStore({
-  id: 'user-store',
+  id: 'user',
   state: (): UserState => ({
     // user info
     userInfo: null,
