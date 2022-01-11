@@ -2,18 +2,10 @@
   <RouterView />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
 import { useTitle } from '/@/hooks/web/useTitle'
 
-export default defineComponent({
-  name: 'App',
-  components: {},
-  setup() {
-    useTitle()
-    return {}
-  },
-})
+useTitle()
 </script>
 
 <style lang="less"></style>

@@ -20,7 +20,7 @@ module.exports = defineConfig({
   extends: [
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
-    // 'prettier',
+    'prettier',
     'plugin:prettier/recommended',
     'plugin:jest/recommended',
   ],
@@ -72,6 +72,12 @@ module.exports = defineConfig({
         },
         svg: 'always',
         math: 'always',
+      },
+    ],
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['Login', 'Home', 'About'],
       },
     ],
   },

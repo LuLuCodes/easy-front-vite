@@ -52,13 +52,13 @@ const transform: AxiosTransform = {
   beforeRequestHook: (config, options) => {
     const { apiUrl, joinPrefix, formatDate, joinTime = true, urlPrefix } = options
 
-    const urlPath = config.url
+    let urlPath = config.url
     if (joinPrefix) {
-      config.url = `${urlPrefix}${config.url}`
+      urlPath = `${urlPrefix}${urlPath}`
     }
 
     if (apiUrl && isString(apiUrl)) {
-      config.url = `${apiUrl}${config.url}`
+      config.url = `${apiUrl}${urlPath}`
     }
     const params = config.params || {}
     const data = config.data || false
@@ -87,9 +87,10 @@ const transform: AxiosTransform = {
           config.data = Object.assign(params || {}, joinTimestamp(joinTime, false))
           config.params = undefined
         }
+        console.log('urlPath', urlPath)
         config.data = Object.assign(
           config.data || {},
-          joinSign(makeSortStr(config.data), urlPath as string),
+          joinSign(JSON.stringify(config.data), urlPath as string),
         )
       } else {
         // 兼容restful风格

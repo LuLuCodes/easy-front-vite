@@ -1,5 +1,5 @@
 import { isObject, isString } from '/@/utils/is'
-import { encryptByAes } from '/@/utils/cipher'
+import { encryptByAes, encryptByMd5 } from '/@/utils/cipher'
 
 const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
@@ -15,7 +15,8 @@ export function joinTimestamp(join: boolean, restful = false): string | object {
 }
 
 export function joinSign(data: string, url: string): object {
-  return { sign: encryptByAes(data, url) }
+  const sign = encryptByMd5(data)
+  return { sign: encryptByAes(sign, url) }
 }
 
 /**
