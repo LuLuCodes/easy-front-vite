@@ -18,9 +18,10 @@ const post = async () => {
   try {
     const res = await Http.post({
       data: {
-        name: 'test',
+        username: 'leyi',
+        password: 'leyi',
       },
-      url: '/customer/login-by-wechat',
+      url: '/user/login',
     })
     console.log(res)
   } catch (error) {
@@ -33,7 +34,7 @@ const get = async () => {
       params: {
         name: 'test',
       },
-      url: '/customer/login-by-wechat',
+      url: '/user/get-userinfo',
     })
     console.log(res)
   } catch (error) {

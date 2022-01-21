@@ -14,7 +14,7 @@ import { joinTimestamp, joinSign, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '@/store/modules/user'
 
 const urlPrefix = import.meta.env.VITE_GLOB_API_URL_PREFIX
-const apiUrl = import.meta.env.VITE_GLOB_API_URL
+const apiUrl = import.meta.env.VITE_USE_MOCK ? '' : import.meta.env.VITE_GLOB_API_URL
 /**
  * @description: 数据处理，方便区分多种处理方式
  */
@@ -56,8 +56,7 @@ const transform: AxiosTransform = {
     if (joinPrefix) {
       urlPath = `${urlPrefix}${urlPath}`
     }
-
-    if (apiUrl && isString(apiUrl)) {
+    if (isString(apiUrl)) {
       config.url = `${apiUrl}${urlPath}`
     }
     const params = config.params || {}
@@ -87,7 +86,6 @@ const transform: AxiosTransform = {
           config.data = Object.assign(params || {}, joinTimestamp(joinTime, false))
           config.params = undefined
         }
-        console.log('urlPath', urlPath)
         config.data = Object.assign(
           config.data || {},
           joinSign(JSON.stringify(config.data), urlPath as string),

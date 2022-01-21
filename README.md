@@ -20,6 +20,10 @@ pnpm run cz
 git push
 ```
 
+## Mock
+
+通过设置*VITE_USE_MOCK*来开启 Mock，mock 数据统一放置在*mock*目录下，建议根据不同的模块建立独立的 ts 文件。
+
 ## 第三方库
 
 ### VueUse

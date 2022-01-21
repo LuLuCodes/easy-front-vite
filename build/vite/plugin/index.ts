@@ -10,10 +10,12 @@ import { configCompressPlugin } from './compress'
 import { configStyleImportPlugin } from './styleImport'
 import { configImageminPlugin } from './imagemin'
 import { configSvgIconsPlugin } from './svgSprite'
+import { configMockPlugin } from './mock'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
     VITE_USE_IMAGEMIN,
+    VITE_USE_MOCK,
     VITE_LEGACY,
     VITE_BUILD_COMPRESS,
     VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE,
@@ -43,6 +45,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // importing from ui libraries
   // vitePlugins.push(Components({ resolvers: [VantResolver()] }))
+
+  // vite-plugin-mock
+  VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))
 
   // vite-plugin-style-import
   vitePlugins.push(configStyleImportPlugin(isBuild))
