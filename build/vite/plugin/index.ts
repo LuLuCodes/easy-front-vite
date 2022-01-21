@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import Components from 'unplugin-vue-components/vite'
+// import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { configHtmlPlugin } from './html'
 import { configCompressPlugin } from './compress'
 import { configStyleImportPlugin } from './styleImport'
@@ -35,6 +37,12 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // vite-plugin-purge-icons
   vitePlugins.push(purgeIcons())
+
+  // unplugin-vue-components
+  vitePlugins.push(Components({}))
+
+  // importing from ui libraries
+  // vitePlugins.push(Components({ resolvers: [VantResolver()] }))
 
   // vite-plugin-style-import
   vitePlugins.push(configStyleImportPlugin(isBuild))

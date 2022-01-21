@@ -2,10 +2,12 @@ import type { UserInfo } from '#/store'
 import { defineStore } from 'pinia'
 import { store } from '@/store'
 import { router } from '@/router'
+import UaParser, { IResult as UaResult } from 'ua-parser-js'
 
 interface UserState {
   userInfo: UserInfo | null
   token?: string
+  ua: UaResult
 }
 
 export const useUserStore = defineStore({
@@ -15,6 +17,7 @@ export const useUserStore = defineStore({
     userInfo: null,
     // token
     token: undefined,
+    ua: new UaParser().getResult(),
   }),
   getters: {
     getUserInfo(): UserInfo | null {

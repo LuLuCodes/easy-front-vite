@@ -1,10 +1,11 @@
 <template>
   <p> This is the Home page. </p>
-  <div> <button @click="post"> test post </button></div>
-  <div> <button @click="get"> test get </button></div>
+  <div> <button @click="post" class="bg-blue-700"> test post </button></div>
+  <div> <button @click="get" class="bg-blue-700"> test get </button></div>
   <div>
-    <button @click="changeMode"> color mode: {{ mode }} </button></div
+    <button @click="changeMode" class="bg-blue-700"> color mode: {{ mode }} </button></div
   >
+  <router-link :to="{ name: 'About' }">go to about page</router-link>
   <MyComponent :count="count" @update="update" />
 </template>
 

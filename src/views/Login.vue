@@ -1,4 +1,5 @@
 <template>
+  <SvgIcon name="logo" />
   <p> {{ description }} </p>
 </template>
 

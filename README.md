@@ -10,6 +10,16 @@
 pnpm run bootstrap
 ```
 
+## 代码提交
+
+> 建议使用一下命令提交代码，该命令会自动执行代码规范检车和修正
+
+```shell
+git add .
+pnpm run cz
+git push
+```
+
 ## 第三方库
 
 ### VueUse

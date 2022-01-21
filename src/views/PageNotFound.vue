@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-const description = ref('This is the Login page.')
+const description = ref('Page not found')
 </script>
 
 <style lang="less"></style>
