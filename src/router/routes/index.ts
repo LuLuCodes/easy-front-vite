@@ -1,6 +1,6 @@
-import type { AppRouteRecordRaw, AppRouteModule } from '/@/router/types'
+import type { AppRouteRecordRaw, AppRouteModule } from '@/router/types'
 
-import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic'
+import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic'
 
 const modules = import.meta.globEager('./modules/**/*.ts')
 
@@ -26,7 +26,7 @@ export const RootRoute: AppRouteRecordRaw = {
 export const LoginRoute: AppRouteRecordRaw = {
   path: '/login',
   name: 'Login',
-  component: () => import('/@/views/Login.vue'),
+  component: () => import('@/views/Login.vue'),
   meta: {
     title: '登录',
   },
@@ -35,7 +35,7 @@ export const LoginRoute: AppRouteRecordRaw = {
 export const HomeRoute: AppRouteRecordRaw = {
   path: '/home',
   name: 'Home',
-  component: () => import('/@/views/Home.vue'),
+  component: () => import('@/views/Home.vue'),
   meta: {
     title: '登录',
   },

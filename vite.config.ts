@@ -7,10 +7,6 @@ import { createProxy } from './build/vite/proxy'
 import { wrapperEnv } from './build/utils'
 import { createVitePlugins } from './build/vite/plugin'
 
-function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir)
-}
-
 const { name, version } = pkg
 const __APP_INFO__ = {
   pkg: { name, version },
@@ -33,18 +29,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     base: VITE_PUBLIC_PATH,
     root,
     resolve: {
-      alias: [
-        // /@/xxxx => src/xxxx
-        {
-          find: /\/@\//,
-          replacement: pathResolve('src') + '/',
-        },
-        // /#/xxxx => types/xxxx
-        {
-          find: /\/#\//,
-          replacement: pathResolve('types') + '/',
-        },
-      ],
+      alias: {
+        '@': resolve(__dirname, './src'),
+        '#': resolve(__dirname, './types'),
+      },
     },
     server: {
       // Listening on all local IPs

@@ -1,7 +1,7 @@
-import type { UserInfo } from '/#/store'
+import type { UserInfo } from '#/store'
 import { defineStore } from 'pinia'
-import { store } from '/@/store'
-import { router } from '/@/router'
+import { store } from '@/store'
+import { router } from '@/router'
 
 interface UserState {
   userInfo: UserInfo | null

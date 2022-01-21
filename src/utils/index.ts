@@ -2,7 +2,7 @@ import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
 import type { App, Plugin } from 'vue'
 
 import { unref } from 'vue'
-import { isObject } from '/@/utils/is'
+import { isObject } from '@/utils/is'
 
 /**
  * Add the object as a parameter to the URL

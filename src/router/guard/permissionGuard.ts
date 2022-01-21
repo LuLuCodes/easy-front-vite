@@ -1,6 +1,6 @@
 import type { Router /*RouteRecordRaw*/ } from 'vue-router'
-import { PageEnum } from '/@/enums/pageEnum'
-import { useUserStoreWithOut } from '/@/store/modules/user'
+import { PageEnum } from '@/enums/pageEnum'
+import { useUserStoreWithOut } from '@/store/modules/user'
 
 const LOGIN_PATH = PageEnum.BASE_LOGIN
 

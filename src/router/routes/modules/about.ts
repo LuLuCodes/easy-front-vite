@@ -1,9 +1,9 @@
-import type { AppRouteModule } from '/@/router/types'
+import type { AppRouteModule } from '@/router/types'
 
 const about: AppRouteModule = {
   path: '/about',
   name: 'About',
-  component: () => import('/@/views/About.vue'),
+  component: () => import('@/views/About.vue'),
   meta: {
     hideChildrenInMenu: true,
     icon: '',
