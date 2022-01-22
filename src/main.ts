@@ -6,7 +6,7 @@ import { setupStore } from '@/store'
 import global_components from '@/components/global'
 
 import 'virtual:svg-icons-register'
-import '@/assets/styles/tailwind.css'
+import '@/assets/styles/main.css'
 
 async function bootstrap() {
   const app = createApp(App)
