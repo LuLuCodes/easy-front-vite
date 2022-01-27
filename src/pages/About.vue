@@ -2,6 +2,7 @@
 {
   name: "about",
   meta: {
+    layout: "Custom",
     hidenMenu: true,
     icon: "",
     title: "关于系统",

@@ -54,7 +54,7 @@ const get = async () => {
   }
 }
 const mode = useColorMode({ selector: 'body' })
-mode.value = 'dark'
+mode.value = 'light'
 
 const changeMode = () => {
   if (mode.value === 'dark') {

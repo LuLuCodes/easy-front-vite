@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import pages from 'vite-plugin-pages'
 import markdown from 'vite-plugin-md'
 import restart from 'vite-plugin-restart'
+import layouts from 'vite-plugin-vue-layouts'
 import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
@@ -15,6 +16,9 @@ import { configStyleImportPlugin } from './styleImport'
 import { configImageminPlugin } from './imagemin'
 import { configSvgIconsPlugin } from './svgSprite'
 import { configMockPlugin } from './mock'
+
+const markdownWrapperClasses =
+  'prose md:prose-lg lg:prose-lg dark:prose-invert text-left p-10 prose-slate prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
@@ -33,8 +37,11 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     pages({
       extensions: ['vue', 'md'],
     }),
+    layouts({
+      defaultLayout: 'Default',
+    }),
     markdown({
-      wrapperClasses: 'prose prose-sm m-auto',
+      wrapperClasses: markdownWrapperClasses,
       headEnabled: true,
       markdownItSetup(md) {
         // https://prismjs.com/

@@ -20,7 +20,115 @@ pnpm run cz
 git push
 ```
 
-## Mock
+## 路由自动映射
+
+以往我们在开发页面时，需要手动编写其路由组织文件来完成文件对路由结构系统的映射，当在开发大型的中后台 B 端项目的时候，配置过程就会比较繁琐，也不容易维护。
+
+`vite-plugin-pages` 就很好的解决了这个问题，无需任何路由组织文件，文件系统即路由系统！
+
+> vue-plugin-pages 基于文件系统的路由生成器
+
+### 基本路由
+
+vue-plugin-pages 自动将 pages 目录下的文件映射成相同名字的路由：
+
+- src/pages/users.vue -> /users
+- src/pages/users/profile.vue -> /users/profile
+- src/pages/settings.vue -> /settings
+
+### 默认索引路由
+
+以 index 命名的文件会自动当做路由的索引页：
+
+- src/pages/index.vue -> /
+- src/pages/users/index.vue -> /users
+
+### 动态路由
+
+使用方括号来表示动态路由，文件夹和文件都可以动态：
+
+- src/pages/users/[id].vue -> /users/:id (/users/one)
+- src/[user]/settings.vue -> /:user/settings (/one/settings)
+
+### 嵌套路由
+
+当我们有如下的目录结构时：
+
+```ts
+src/pages/
+  ├── users/
+  │  ├── [id].vue
+  │  └── index.vue
+  └── users.vue
+```
+
+将会得到如下的路由配置：
+
+```ts
+;[
+  {
+    path: '/users',
+    component: '/src/pages/users.vue',
+    children: [
+      {
+        path: '',
+        component: '/src/pages/users/index.vue',
+        name: 'users',
+      },
+      {
+        path: ':id',
+        component: '/src/pages/users/[id].vue',
+        name: 'users-id',
+      },
+    ],
+  },
+]
+```
+
+### route 元数据定义
+
+```ts
+// in src/pages/Home.vue
+<route>
+{
+  name: "home",
+  meta: {
+    hidenMenu: false,
+    icon: "",
+    title: "首页",
+    requiresAuth: true
+  }
+}
+</route>
+```
+
+## 布局系统
+
+`src/layouts/Default.vue` 将作为默认布局。
+
+创建自定义布局时，需要配置 route 元数据，比如：
+
+```ts
+// in src/pages/About.vue
+<route>
+{
+  name: "about",
+  meta: {
+    layout: "Custom",
+    hidenMenu: true,
+    icon: "",
+    title: "关于系统",
+    requiresAuth: false
+  }
+}
+</route>
+```
+
+## 支持 Markdown 渲染
+
+例如 `src/pages/README.md`，当路由到`/readme`时，即可看到对应的 markdown 渲染效果。
+
+## Mock 支持
 
 通过设置*VITE_USE_MOCK*来开启 Mock，mock 数据统一放置在*mock*目录下，建议根据不同的模块建立独立的 ts 文件。
 

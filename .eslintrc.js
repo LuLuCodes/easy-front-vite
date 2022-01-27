@@ -77,7 +77,7 @@ module.exports = defineConfig({
     'vue/multi-word-component-names': [
       'error',
       {
-        ignores: ['Login', 'Home', 'About', 'Index'],
+        ignores: ['Login', 'Home', 'About', 'Index', 'Default', 'Custom'],
       },
     ],
   },
