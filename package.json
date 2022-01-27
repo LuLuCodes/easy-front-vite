@@ -59,6 +59,7 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@iconify-json/mdi": "^1.0.14",
     "@tailwindcss/typography": "^0.5.0",
     "@types/crypto-js": "^4.0.2",
     "@types/fs-extra": "^9.0.13",
@@ -120,6 +121,7 @@
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
     "unplugin-auto-import": "^0.5.11",
+    "unplugin-icons": "^0.13.0",
     "unplugin-vue-components": "^0.17.14",
     "vite": "^2.7.2",
     "vite-plugin-compression": "^0.3.6",

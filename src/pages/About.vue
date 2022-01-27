@@ -13,6 +13,7 @@
 
 <template>
   <p> {{ description }} </p>
+  <mdi:account-circle />
 </template>
 
 <script lang="ts" setup>

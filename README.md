@@ -140,6 +140,22 @@ const doubled = computed(() => count.value * 2)
 - vueuse
 - vue-router
 
+## 组件自动引入
+
+在 src/components 下定义的组件都将会按需引入，即 import 是不需要的
+
+## 图标引入
+
+使用[icones](https://icones.netlify.app/)，在模板中可以直接使用
+
+```html
+<!-- in src/pages/About.vue -->
+<template>
+  <p> {{ description }} </p>
+  <mdi:account-circle />
+</template>
+```
+
 ## 支持 Markdown 渲染
 
 例如 `src/pages/README.md`，当路由到`/readme`时，即可看到对应的 markdown 渲染效果。

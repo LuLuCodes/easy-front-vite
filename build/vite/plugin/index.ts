@@ -9,6 +9,8 @@ import purgeIcons from 'vite-plugin-purge-icons'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import Components from 'unplugin-vue-components/vite'
 import autoImport from 'unplugin-auto-import/vite'
+import icons from 'unplugin-icons/vite'
+import iconsResolver from 'unplugin-icons/resolver'
 import prism from 'markdown-it-prism'
 // import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { configHtmlPlugin } from './html'
@@ -49,6 +51,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         md.use(prism)
       },
     }),
+    icons({
+      autoInstall: true,
+    }),
     restart({
       restart: ['.env*', 'postcss.config.js', 'tailwind.config'],
     }),
@@ -74,7 +79,17 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(purgeIcons())
 
   // unplugin-vue-components
-  vitePlugins.push(Components({}))
+  vitePlugins.push(
+    Components({
+      extensions: ['vue', 'md'],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      resolvers: [
+        iconsResolver({
+          prefix: '',
+        }),
+      ],
+    }),
+  )
 
   // importing from ui libraries
   // vitePlugins.push(Components({ resolvers: [VantResolver()] }))
