@@ -1,3 +1,15 @@
+<route>
+{
+  name: "ahout",
+  meta: {
+    hidenMenu: true,
+    icon: "",
+    title: "关于系统",
+    requiresAuth: false
+  }
+}
+</route>
+
 <template>
   <p> {{ description }} </p>
 </template>

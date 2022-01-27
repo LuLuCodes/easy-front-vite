@@ -1,3 +1,15 @@
+<route>
+{
+  name: "home",
+  meta: {
+    hidenMenu: false,
+    icon: "",
+    title: "首页",
+    requiresAuth: true
+  }
+}
+</route>
+
 <template>
   <p> This is the Home page. </p>
   <div> <button @click="post" class="bg-blue-700"> test post </button></div>

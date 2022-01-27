@@ -1,3 +1,15 @@
+<route>
+{
+  name: "page-not-found",
+  meta: {
+    hidenMenu: true,
+    icon: "",
+    title: "PageNotFound",
+    requiresAuth: false
+  }
+}
+</route>
+
 <template>
   <p> {{ description }} </p>
 </template>

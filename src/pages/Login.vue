@@ -1,3 +1,15 @@
+<route>
+{
+  name: "login",
+  meta: {
+    hidenMenu: false,
+    icon: "",
+    title: "登录",
+    requiresAuth: false
+  }
+}
+</route>
+
 <template>
   <SvgIcon name="logo" />
   <p> {{ description }} </p>

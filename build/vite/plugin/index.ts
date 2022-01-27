@@ -1,5 +1,6 @@
 import type { Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import pages from 'vite-plugin-pages'
 import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
@@ -24,6 +25,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const vitePlugins: (Plugin | Plugin[])[] = [
     // have to
     vue(),
+    pages(),
     // support name
     vueSetupExtend(),
   ]
