@@ -22,10 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useColorMode } from '@vueuse/core'
 import { Http } from '@/utils/axios'
-import MyComponent from '@/components/MyComponent.vue'
 const post = async () => {
   try {
     const res = await Http.post({

@@ -124,6 +124,22 @@ src/pages/
 </route>
 ```
 
+## 核心库自动引入
+
+无需手工`import` vue 等库，可以直接使用：
+
+```ts
+const count = ref(0)
+const doubled = computed(() => count.value * 2)
+```
+
+目前模板支持自动引入的库列包括:
+
+- vue
+- pinia
+- vueuse
+- vue-router
+
 ## 支持 Markdown 渲染
 
 例如 `src/pages/README.md`，当路由到`/readme`时，即可看到对应的 markdown 渲染效果。

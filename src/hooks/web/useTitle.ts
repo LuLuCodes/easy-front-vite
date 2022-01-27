@@ -1,6 +1,4 @@
-import { watch, unref } from 'vue'
 import { useTitle as usePageTitle } from '@vueuse/core'
-import { useRouter } from 'vue-router'
 
 export function useTitle() {
   const appTitle = import.meta.env.VITE_GLOB_APP_TITLE

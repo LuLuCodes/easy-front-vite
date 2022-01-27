@@ -8,6 +8,7 @@ import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import Components from 'unplugin-vue-components/vite'
+import autoImport from 'unplugin-auto-import/vite'
 import prism from 'markdown-it-prism'
 // import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { configHtmlPlugin } from './html'
@@ -53,6 +54,11 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     }),
     // support name
     vueSetupExtend(),
+    autoImport({
+      dts: './build/types/auto-imports.d.ts',
+      imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
+      resolvers: [],
+    }),
   ]
 
   // @vitejs/plugin-legacy

@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 const description = ref('Page not found')
 </script>
 

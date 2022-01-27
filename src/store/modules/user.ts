@@ -1,5 +1,4 @@
 import type { UserInfo } from '#/store'
-import { defineStore } from 'pinia'
 import { store } from '@/store'
 import { router } from '@/router'
 import UaParser, { IResult as UaResult } from 'ua-parser-js'
