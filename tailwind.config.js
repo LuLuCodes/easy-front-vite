@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const typography = require('@tailwindcss/typography')
 module.exports = {
-  content: ['index.html', './src/**/*.{js,jsx,ts,tsx,vue,html}'],
+  content: ['index.html', './src/**/*.{js,jsx,ts,tsx,vue,html}', './src/**/*.md'],
+  safelist: ['prose', 'prose-sm', 'm-auto'],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     fontSize: {
@@ -66,5 +69,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [require('@tailwindcss/line-clamp'), typography],
 }

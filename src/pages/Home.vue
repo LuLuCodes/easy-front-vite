@@ -17,7 +17,7 @@
   <div>
     <button @click="changeMode" class="bg-blue-700"> color mode: {{ mode }} </button></div
   >
-  <router-link :to="{ name: 'About' }">go to about page</router-link>
+  <router-link :to="{ name: 'about' }">go to about page</router-link>
   <MyComponent :count="count" @update="update" />
 </template>
 

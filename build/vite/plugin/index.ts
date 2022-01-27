@@ -1,10 +1,13 @@
 import type { Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import pages from 'vite-plugin-pages'
+import markdown from 'vite-plugin-md'
+import restart from 'vite-plugin-restart'
 import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import Components from 'unplugin-vue-components/vite'
+import prism from 'markdown-it-prism'
 // import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { configHtmlPlugin } from './html'
 import { configCompressPlugin } from './compress'
@@ -24,8 +27,23 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   const vitePlugins: (Plugin | Plugin[])[] = [
     // have to
-    vue(),
-    pages(),
+    vue({
+      include: [/\.vue$/, /\.md$/],
+    }),
+    pages({
+      extensions: ['vue', 'md'],
+    }),
+    markdown({
+      wrapperClasses: 'prose prose-sm m-auto',
+      headEnabled: true,
+      markdownItSetup(md) {
+        // https://prismjs.com/
+        md.use(prism)
+      },
+    }),
+    restart({
+      restart: ['.env*', 'postcss.config.js', 'tailwind.config'],
+    }),
     // support name
     vueSetupExtend(),
   ]

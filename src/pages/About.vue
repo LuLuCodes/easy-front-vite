@@ -1,6 +1,6 @@
 <route>
 {
-  name: "ahout",
+  name: "about",
   meta: {
     hidenMenu: true,
     icon: "",

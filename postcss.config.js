@@ -2,6 +2,7 @@ module.exports = ({ file }) => {
   const isVant = file && file.dirname && file.dirname.indexOf('vant') > -1
   return {
     plugins: {
+      'postcss-nested': {},
       tailwindcss: {},
       autoprefixer: {},
       'postcss-px-to-viewport': {
