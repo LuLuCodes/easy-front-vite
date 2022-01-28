@@ -3,7 +3,6 @@ module.exports = ({ file }) => {
   return {
     plugins: {
       'postcss-nested': {},
-      tailwindcss: {},
       autoprefixer: {},
       'postcss-px-to-viewport': {
         unitToConvert: 'px',

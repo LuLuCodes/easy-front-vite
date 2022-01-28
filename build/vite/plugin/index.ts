@@ -6,6 +6,7 @@ import restart from 'vite-plugin-restart'
 import layouts from 'vite-plugin-vue-layouts'
 import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
+import windicss from 'vite-plugin-windicss'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import Components from 'unplugin-vue-components/vite'
 import autoImport from 'unplugin-auto-import/vite'
@@ -51,11 +52,14 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         md.use(prism)
       },
     }),
+    windicss({
+      safelist: markdownWrapperClasses,
+    }),
     icons({
       autoInstall: true,
     }),
     restart({
-      restart: ['.env*', 'postcss.config.js', 'tailwind.config'],
+      restart: ['.env*', 'postcss.config.js', 'windi.config.js'],
     }),
     // support name
     vueSetupExtend(),

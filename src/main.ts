@@ -6,6 +6,8 @@ import { createHead } from '@vueuse/head'
 
 import 'virtual:svg-icons-register'
 import '@/assets/styles/main.css'
+import 'virtual:windi-utilities.css'
+import 'virtual:windi-devtools'
 
 const head = createHead()
 async function bootstrap() {

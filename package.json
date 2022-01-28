@@ -53,6 +53,7 @@
     "vite-plugin-pages": "^0.20.0",
     "vue": "^3.2.26",
     "vue-json-pretty": "^2.0.6",
+    "vue-request": "^1.2.4",
     "vue-router": "^4.0.12",
     "vue-types": "^4.1.1"
   },
@@ -136,8 +137,11 @@
     "vite-plugin-theme": "^0.8.1",
     "vite-plugin-vue-layouts": "^0.5.0",
     "vite-plugin-vue-setup-extend": "^0.1.0",
+    "vite-plugin-windicss": "^1.6.3",
     "vue-eslint-parser": "^8.0.1",
-    "vue-tsc": "^0.29.8"
+    "vue-tsc": "^0.29.8",
+    "windicss": "^3.4.3",
+    "windicss-analysis": "^0.3.5"
   },
   "config": {
     "commitizen": {
