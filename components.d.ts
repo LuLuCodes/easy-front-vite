@@ -4,7 +4,6 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    'Mdi:accountCircle': typeof import('~icons/mdi/account-circle')['default']
     MyComponent: typeof import('./src/components/MyComponent.vue')['default']
     SvgIcon: typeof import('./src/components/global/SvgIcon.vue')['default']
   }
