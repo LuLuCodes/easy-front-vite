@@ -4,7 +4,15 @@
 
 > 此模板未集成任何前端 UI 库，非常纯粹的模板工程
 
+## 创建工程
+
+- 直接通过 github download 工程源码，[源码地址](https://github.com/LuLuCodes/easy-front-vite)
+
+- 通过脚手架*ef-cli3*创建，详情操作请查看[npm](https://www.npmjs.com/package/ef-cli3)
+
 ## 安装依赖
+
+> 包管理器目前已更新成 pnpm，如果使用 npm 或者 yarn，不保证工程能正常使用
 
 ```shell
 pnpm run bootstrap
@@ -163,6 +171,56 @@ const doubled = computed(() => count.value * 2)
 ## Mock 支持
 
 通过设置*VITE_USE_MOCK*来开启 Mock，mock 数据统一放置在*mock*目录下，建议根据不同的模块建立独立的 ts 文件。
+
+## 网络请求
+
+在`src/utils/axios`中已经完成了基本的网络库的封装，使用示例如下：
+
+```ts
+import { Http } from '@/utils/axios'
+
+await Http.post({
+  data: {
+    username: 'leyi',
+    password: 'leyi',
+  },
+  url: '/user/login',
+})
+
+await Http.get({
+  params: {
+    name: 'test',
+  },
+  url: '/user/get-userinfo',
+})
+```
+
+除此之外，我们可以通过[VueRequest](https://cn.attojs.org/)对网络库进行二次封装，从而业务开发中以统一的标准对接口请求进行管理，使我们更加专注于核心业务的开发。
+
+`VueRequest`简单示例：
+
+```ts
+import { Http } from '@/utils/axios'
+import { useRequest } from 'vue-request'
+
+const { run, data, loading } = useRequest(
+  () => {
+    return Http.post({
+      data: {},
+      url: '/user/vrequest',
+    })
+  },
+  {
+    manual: true,
+  },
+)
+
+const vueRequest = () => {
+  run()
+}
+```
+
+> 以上所有示例均可在`src/pages/Request.vue`中查看。后期随着项目的积累，会根据开发的实际情况，对 VueRequest 进行统一的二次封装，以求更加便捷。
 
 ## 第三方库
 

@@ -40,4 +40,16 @@ export default [
       }
     },
   },
+  {
+    url: '/api/user/vrequest',
+    method: 'post',
+    timeout: 3000,
+    response: () => {
+      return {
+        code: 0,
+        msg: 'success',
+        data: 'this is v-request post',
+      }
+    },
+  },
 ] as MockMethod[]
