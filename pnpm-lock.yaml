@@ -56,6 +56,7 @@ specifiers:
   lodash-es: ^4.17.21
   markdown-it-anchor: ^8.4.1
   markdown-it-prism: ^2.2.2
+  mitt: ^3.0.0
   mockjs: ^1.1.0
   normalize.css: ^8.0.1
   nprogress: ^0.2.0
@@ -123,6 +124,7 @@ dependencies:
   crypto-js: 4.1.1
   dayjs: 1.10.7
   lodash-es: 4.17.21
+  mitt: 3.0.0
   mockjs: 1.1.0
   normalize.css: 8.0.1
   nprogress: 0.2.0
@@ -7552,6 +7554,10 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
 
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}

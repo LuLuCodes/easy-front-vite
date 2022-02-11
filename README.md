@@ -222,6 +222,29 @@ const vueRequest = () => {
 
 > 以上所有示例均可在`src/pages/Request.vue`中查看。后期随着项目的积累，会根据开发的实际情况，对 VueRequest 进行统一的二次封装，以求更加便捷。
 
+## 基于 mitt 处理组件间事件联动
+
+```ts
+import emitter from '@/utils/emitter'
+
+// listen to an event
+emitter.on('foo', (e) => console.log('foo', e))
+
+// listen to all events
+emitter.on('*', (type, e) => console.log(type, e))
+
+// fire an event
+emitter.emit('foo', { a: 'b' })
+
+// clearing all events
+emitter.all.clear()
+
+// working with handler references:
+function onFoo() {}
+emitter.on('foo', onFoo) // listen
+emitter.off('foo', onFoo) // unlisten
+```
+
 ## 第三方库
 
 ### VueUse
