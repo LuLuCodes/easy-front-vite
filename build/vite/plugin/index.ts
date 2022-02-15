@@ -9,11 +9,12 @@ import purgeIcons from 'vite-plugin-purge-icons'
 import windicss from 'vite-plugin-windicss'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import Components from 'unplugin-vue-components/vite'
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import ElementPlus from 'unplugin-element-plus/vite'
 import autoImport from 'unplugin-auto-import/vite'
 import icons from 'unplugin-icons/vite'
 import iconsResolver from 'unplugin-icons/resolver'
 import prism from 'markdown-it-prism'
-// import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { configHtmlPlugin } from './html'
 import { configCompressPlugin } from './compress'
 import { configStyleImportPlugin } from './styleImport'
@@ -67,6 +68,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
       dts: './build/types/auto-imports.d.ts',
       imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
       resolvers: [],
+      // resolvers: [ElementPlusResolver()],
     }),
   ]
 
@@ -82,6 +84,13 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   // vite-plugin-purge-icons
   vitePlugins.push(purgeIcons())
 
+  // element-ui plus
+  // vitePlugins.push(
+  //   ElementPlus({
+  //     useSource: true,
+  //   }),
+  // )
+
   // unplugin-vue-components
   vitePlugins.push(
     Components({
@@ -89,14 +98,12 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [
         iconsResolver({
-          prefix: '',
+          prefix: 'Icon',
         }),
+        // ElementPlusResolver(),
       ],
     }),
   )
-
-  // importing from ui libraries
-  // vitePlugins.push(Components({ resolvers: [VantResolver()] }))
 
   // vite-plugin-mock
   VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))

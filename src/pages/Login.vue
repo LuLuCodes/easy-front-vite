@@ -11,7 +11,7 @@
 </route>
 
 <template>
-  <SvgIcon name="logo" />
+  <IconSvg name="logo" />
   <p> {{ description }} </p>
 </template>
 

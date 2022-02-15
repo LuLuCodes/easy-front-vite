@@ -4,8 +4,8 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    IconSvg: typeof import('./src/components/global/IconSvg.vue')['default']
     MyComponent: typeof import('./src/components/MyComponent.vue')['default']
-    SvgIcon: typeof import('./src/components/global/SvgIcon.vue')['default']
   }
 }
 
