@@ -1,3 +1,4 @@
+const ora = require('ora')
 const inquirer = require('inquirer')
 const fs = require('fs')
 const path = require('path')
@@ -5,10 +6,26 @@ const resolve = (...file) => path.resolve(__dirname, ...file)
 const { pageTemplate, componentTemplate } = require('./template.js')
 const chalk = require('chalk')
 
-const log = (message) => console.log(chalk.green(`${message}`))
 const successLog = (message) => console.log(chalk.blue(`${message}`))
 const errorLog = (error) => console.log(chalk.red(`${error}`))
 
+async function wrapLoading(fn, message, ...args) {
+  // 使用 ora 初始化，传入提示信息 message
+  const spinner = ora(message)
+  // 开始加载动画
+  spinner.start()
+
+  try {
+    // 执行传入方法 fn
+    const result = await fn(...args)
+    // 状态为修改为成功
+    spinner.succeed()
+    return result
+  } catch (error) {
+    // 状态为修改为失败
+    spinner.fail(error.message)
+  }
+}
 const generateFile = (path, data) => {
   if (fs.existsSync(path)) {
     errorLog(`${path}文件已存在`)
@@ -114,8 +131,7 @@ async function create() {
 
   const file = resolve(type === 'page' ? '../src/pages' : '../src/components', `${name}.vue`)
   try {
-    log(`正在生成 vue 文件......`)
-    await generateFile(file, template)
+    await wrapLoading(generateFile, '正在生成 vue 文件', file, template)
     successLog('生成成功')
   } catch (e) {
     errorLog(e.message)
