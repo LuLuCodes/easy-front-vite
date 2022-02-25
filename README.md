@@ -116,6 +116,131 @@ src/pages/
 </route>
 ```
 
+## pinia
+
+> pinia 目前已经是 vue 官方正式的状态库，用于替换 vuex。至于 pinia 的优点，可以自行百度，这里不再过多的讲解。
+
+### 创建一个 pinia 并传递给 vue 应用
+
+```ts
+// src/store/index.ts
+import type { App } from 'vue'
+
+const store = createPinia()
+
+export function setupStore(app: App<Element>) {
+  app.use(store)
+}
+
+export { store }
+```
+
+```ts
+// src/main.ts
+import { setupStore } from '@/store'
+
+const app = createApp(App)
+// Configure store
+setupStore(app)
+app.mount('#app')
+```
+
+### 创建一个 store
+
+```ts
+// src/store/modules/user.ts
+export const useUserStore = defineStore({
+  id: 'user',
+  state: () => {
+    // ......
+  },
+  getter: {
+    // ......
+  },
+  actions: {
+    // ......
+  },
+})
+```
+
+> id 是必须的，devtools 调试会根据 id 进行跟踪
+
+### 在 setup 中使用 store
+
+```ts
+import { useUserStore } from '@/store/modules/user'
+
+export default defineComponent({
+  setup() {
+    const store = useUserStore()
+    return {
+      store,
+    }
+  },
+})
+```
+
+### 在 setup 外使用 store
+
+```ts
+// src/store/modules/user.ts
+export function useUserStoreWithOut() {
+  return useUserStore(store)
+}
+```
+
+```ts
+import { useUserStoreWithOut } from '@/store/modules/user'
+const userStore = useUserStoreWithOut()
+```
+
+> userStore 实例化后的，我们就可以在 store 上访问 state、getters、actions 等（pinia 中没有 mutations）。
+
+> 该 store 是一个 reactive 对象，所以不需要 “.value”，也不能对其进行解构使用，否则失去响应性（类似 props）。如果需要解构，请使用`storeToRefs`
+
+### 定义 state
+
+在 pinia 中，定义 state 是在函数中返回 state 初始状态
+
+```ts
+export const useUserStore = defineStore({
+  id: 'user',
+  state: (): UserState => ({
+    // user info
+    userInfo: null,
+    // token
+    token: undefined,
+    ua: new UaParser().getResult(),
+  }),
+})
+```
+
+### 使用 state
+
+```ts
+import { useUserStore } from '@/store/modules/user'
+
+export default defineComponent({
+  setup() {
+    const store = useUserStore()
+    return {
+      userInfo: store.userInfo,
+    }
+  },
+})
+```
+
+> 出于代码结构考虑，全局的状态管理不建议直接在各个组件处随意修改状态，应统一使用 action 中的方法修改（没有 mutation 了）
+
+### reset && patch
+
+- $reset 可以将 state 状态重置
+- $patch 可以同时修改多个值
+
+### getters && actions
+
+与 vuex 类似，详细内容请查看[pinia 文档](https://pinia.vuejs.org/introduction.html)
+
 ## 布局系统
 
 `src/layouts/Default.vue` 将作为默认布局。
