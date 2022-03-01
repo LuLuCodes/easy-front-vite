@@ -2,7 +2,12 @@ import type { UserInfo } from '#/store'
 import { store } from '@/store'
 import { router } from '@/router'
 import UaParser, { IResult as UaResult } from 'ua-parser-js'
+import { Http } from '@/utils/axios'
 
+interface LoginInfo {
+  username: string
+  password: string
+}
 interface UserState {
   userInfo: UserInfo | null
   token?: string
@@ -40,15 +45,23 @@ export const useUserStore = defineStore({
     /**
      * @description: login
      */
-    async login(params: any): Promise<any> {
+    async login(params: LoginInfo): Promise<any> {
       try {
-        // TODO: login api
-        console.log(params)
+        const { userId, username, realname, avatar, token } = await Http.post({
+          data: {
+            username: params.username,
+            password: params.password,
+          },
+          url: '/user/login',
+        })
         // save token
-        this.setToken('token')
-        this.setUserInfo({ userId: 123, username: 'leyi', realName: 'leyi', avatar: '' })
-      } catch (error) {
-        return Promise.reject(error)
+        if (token) {
+          this.setToken(token)
+          this.setUserInfo({ userId, username, realname, avatar })
+          await router.replace('/home')
+        }
+      } catch (error: any) {
+        throw new Error(error.message)
       }
     },
     /**
@@ -58,13 +71,13 @@ export const useUserStore = defineStore({
       if (this.getToken) {
         try {
           // TODO: logout
-        } catch {
-          console.log('注销Token失败')
+        } catch (error: any) {
+          throw new Error(error.message)
         }
       }
       this.setToken(undefined)
       this.setUserInfo(null)
-      router.push('/login')
+      await router.replace('/login')
     },
   },
 })

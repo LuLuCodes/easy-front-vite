@@ -6,8 +6,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 const LOGIN_PATH = PageEnum.BASE_LOGIN
-
-const whitePathList: PageEnum[] = [LOGIN_PATH]
+const HOME_PATH = PageEnum.BASE_HOME
 
 export function createPermissionGuard(router: Router) {
   const userStore = useUserStoreWithOut()
@@ -15,16 +14,15 @@ export function createPermissionGuard(router: Router) {
     NProgress.start()
     const token = userStore.getToken
 
-    // Whitelist can be directly entered
-    if (whitePathList.includes(to.path as PageEnum)) {
-      next()
+    if (token && to.path === LOGIN_PATH) {
+      next(HOME_PATH)
       return
     }
 
     // token does not exist
     if (!token) {
-      // You can access without permission. You need to set the routing meta.ignoreAuth to true
-      if (to.meta.ignoreAuth) {
+      console.log(111111)
+      if (!to.meta.requiresAuth) {
         next()
         return
       }
@@ -44,13 +42,12 @@ export function createPermissionGuard(router: Router) {
       return
     }
 
-    const redirectPath = (from.query.redirect || to.path) as string
+    const redirectPath = from.query.redirect as string
     const redirect = decodeURIComponent(redirectPath)
-    if (to.path === redirect) {
-      NProgress.done()
-      next({ ...to, replace: true })
-    } else {
+    if (redirect === to.path) {
       next()
+    } else {
+      next(redirect)
     }
   })
 

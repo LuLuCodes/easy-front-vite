@@ -1,7 +1,7 @@
 import App from './App.vue'
-import { setupRouter } from '@/router'
+import { router, setupRouter } from '@/router'
 import { setupStore } from '@/store'
-
+import { setupRouterGuard } from '@/router/guard'
 import { createHead } from '@vueuse/head'
 
 import 'virtual:svg-icons-register'
@@ -18,6 +18,8 @@ async function bootstrap() {
 
   // Configure routing
   setupRouter(app)
+  // router-guard
+  setupRouterGuard(router)
   app.use(head)
   app.mount('#app')
 }

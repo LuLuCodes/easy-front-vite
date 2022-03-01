@@ -28,6 +28,12 @@ export default [
           code: 0,
           msg: 'success',
           data: {
+            userId: 123,
+            username: 'leyi',
+            realname: '乐毅',
+            avatar: '',
+            desc: '',
+            roles: [],
             token: uuidv4(),
           },
         }
