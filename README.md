@@ -241,6 +241,33 @@ export default defineComponent({
 
 与 vuex 类似，详细内容请查看[pinia 文档](https://pinia.vuejs.org/introduction.html)
 
+### pinia 固化
+
+```ts
+export const useUserStore = defineStore({
+  id: 'user',
+  persist: {
+    // pinia save to window.localStorage
+    storage: window.localStorage,
+    beforeRestore: (_) => {
+      console.log('Before hydration...')
+    },
+    afterRestore: (_) => {
+      console.log('After hydration...')
+    },
+  }
+  state: (): UserState => ({
+    // user info
+    userInfo: null,
+    // token
+    token: undefined,
+    ua: new UaParser().getResult(),
+  }),
+})
+```
+
+详细内容请查看[pinia-plugin-persistedstate 文档](https://github.com/prazdevs/pinia-plugin-persistedstate)
+
 ## 布局系统
 
 `src/layouts/Default.vue` 将作为默认布局。

@@ -16,6 +16,16 @@ interface UserState {
 
 export const useUserStore = defineStore({
   id: 'user',
+  persist: {
+    // pinia save to window.localStorage
+    storage: window.localStorage,
+    beforeRestore: (_) => {
+      console.log('Before hydration...')
+    },
+    afterRestore: (_) => {
+      console.log('After hydration...')
+    },
+  },
   state: (): UserState => ({
     // user info
     userInfo: null,
