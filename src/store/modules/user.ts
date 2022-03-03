@@ -15,7 +15,7 @@ interface UserState {
 }
 
 export const useUserStore = defineStore({
-  id: 'user',
+  id: 'user_store',
   persist: {
     // pinia save to window.localStorage
     storage: window.localStorage,

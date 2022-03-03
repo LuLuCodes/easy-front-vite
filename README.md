@@ -150,7 +150,7 @@ app.mount('#app')
 ```ts
 // src/store/modules/user.ts
 export const useUserStore = defineStore({
-  id: 'user',
+  id: 'user_store',
   state: () => {
     // ......
   },
@@ -204,7 +204,7 @@ const userStore = useUserStoreWithOut()
 
 ```ts
 export const useUserStore = defineStore({
-  id: 'user',
+  id: 'user_store',
   state: (): UserState => ({
     // user info
     userInfo: null,
@@ -245,7 +245,7 @@ export default defineComponent({
 
 ```ts
 export const useUserStore = defineStore({
-  id: 'user',
+  id: 'user_store',
   persist: {
     // pinia save to window.localStorage
     storage: window.localStorage,
@@ -255,7 +255,7 @@ export const useUserStore = defineStore({
     afterRestore: (_) => {
       console.log('After hydration...')
     },
-  }
+  },
   state: (): UserState => ({
     // user info
     userInfo: null,
