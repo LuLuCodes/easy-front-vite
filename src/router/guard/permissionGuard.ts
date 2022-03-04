@@ -21,7 +21,6 @@ export function createPermissionGuard(router: Router) {
 
     // token does not exist
     if (!token) {
-      console.log(111111)
       if (!to.meta.requiresAuth) {
         next()
         return
@@ -42,13 +41,13 @@ export function createPermissionGuard(router: Router) {
       return
     }
 
-    const redirectPath = from.query.redirect as string
-    const redirect = decodeURIComponent(redirectPath)
-    if (redirect === to.path) {
-      next()
-    } else {
+    const redirectPath = (from.query.redirect as string) ?? ''
+    const redirect = redirectPath ?? decodeURIComponent(redirectPath)
+    if (redirect && redirect !== to.path) {
       next(redirect)
+      return
     }
+    next()
   })
 
   router.afterEach(() => {
