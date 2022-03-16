@@ -18,6 +18,10 @@
 pnpm run bootstrap
 ```
 
+```shell
+pnpm i --registry=https://registry.npm.taobao.org
+```
+
 ## 代码提交
 
 > 建议使用一下命令提交代码，该命令会自动执行代码规范检查和修正
