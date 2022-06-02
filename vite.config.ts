@@ -31,6 +31,17 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
+        '@api': resolve(__dirname, './src/api'),
+        '@assets': resolve(__dirname, './src/assets'),
+        '@components': resolve(__dirname, './src/components'),
+        '@enums': resolve(__dirname, './src/enums'),
+        '@hooks': resolve(__dirname, './src/hooks'),
+        '@layouts': resolve(__dirname, './src/layouts'),
+        '@pages': resolve(__dirname, './src/pages'),
+        '@router': resolve(__dirname, './src/router'),
+        '@settings': resolve(__dirname, './src/settings'),
+        '@store': resolve(__dirname, './src/store'),
+        '@utils': resolve(__dirname, './src/utils'),
         '#': resolve(__dirname, './types'),
       },
     },

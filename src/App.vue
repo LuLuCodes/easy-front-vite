@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useTitle } from '@/hooks/web/useTitle'
+import { useTitle } from '@hooks/web/useTitle'
 
 useTitle()
 </script>

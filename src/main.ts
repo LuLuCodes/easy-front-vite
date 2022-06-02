@@ -1,11 +1,11 @@
 import App from './App.vue'
-import { router, setupRouter } from '@/router'
-import { setupStore } from '@/store'
-import { setupRouterGuard } from '@/router/guard'
+import { router, setupRouter } from '@router/index'
+import { setupStore } from '@store/index'
+import { setupRouterGuard } from '@router/guard'
 import { createHead } from '@vueuse/head'
 
 import 'virtual:svg-icons-register'
-import '@/assets/styles/main.css'
+import '@assets/styles/main.css'
 import 'virtual:windi-utilities.css'
 import 'virtual:windi-devtools'
 

@@ -1,5 +1,5 @@
-import { isObject, isString } from '@/utils/is'
-import { encryptByAes, encryptByMd5 } from '@/utils/cipher'
+import { isObject, isString } from '@utils/is'
+import { encryptByAes, encryptByMd5 } from '@utils/cipher'
 
 const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 

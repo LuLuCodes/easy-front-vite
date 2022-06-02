@@ -1,6 +1,6 @@
 import type { Router /*RouteRecordRaw*/ } from 'vue-router'
-import { PageEnum } from '@/enums/pageEnum'
-import { useUserStoreWithOut } from '@/store/modules/user'
+import { PageEnum } from '@enums/pageEnum'
+import { useUserStoreWithOut } from '@store/modules/user'
 import NProgress from 'nprogress'
 
 import 'nprogress/nprogress.css'

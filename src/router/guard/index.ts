@@ -1,5 +1,5 @@
 import type { Router, RouteLocationNormalized } from 'vue-router'
-import { AxiosCanceler } from '@/utils/axios/axiosCancel'
+import { AxiosCanceler } from '@utils/axios/axiosCancel'
 import { createPermissionGuard } from './permissionGuard'
 
 // Don't change the order of creation

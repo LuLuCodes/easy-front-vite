@@ -141,7 +141,7 @@ export { store }
 
 ```ts
 // src/main.ts
-import { setupStore } from '@/store'
+import { setupStore } from '@store'
 
 const app = createApp(App)
 // Configure store
@@ -172,7 +172,7 @@ export const useUserStore = defineStore({
 ### 在 setup 中使用 store
 
 ```ts
-import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@store/modules/user'
 
 export default defineComponent({
   setup() {
@@ -194,7 +194,7 @@ export function useUserStoreWithOut() {
 ```
 
 ```ts
-import { useUserStoreWithOut } from '@/store/modules/user'
+import { useUserStoreWithOut } from '@store/modules/user'
 const userStore = useUserStoreWithOut()
 ```
 
@@ -222,7 +222,7 @@ export const useUserStore = defineStore({
 ### 使用 state
 
 ```ts
-import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@store/modules/user'
 
 export default defineComponent({
   setup() {
@@ -339,7 +339,7 @@ const doubled = computed(() => count.value * 2)
 在`src/utils/axios`中已经完成了基本的网络库的封装，使用示例如下：
 
 ```ts
-import { Http } from '@/utils/axios'
+import { Http } from '@utils/axios'
 
 await Http.post({
   data: {
@@ -362,7 +362,7 @@ await Http.get({
 `VueRequest`简单示例：
 
 ```ts
-import { Http } from '@/utils/axios'
+import { Http } from '@utils/axios'
 import { useRequest } from 'vue-request'
 
 const { run, data, loading } = useRequest(
@@ -387,7 +387,7 @@ const vueRequest = () => {
 ## 基于 mitt 处理组件间事件联动
 
 ```ts
-import emitter from '@/utils/emitter'
+import emitter from '@utils/emitter'
 
 // listen to an event
 emitter.on('foo', (e) => console.log('foo', e))

@@ -1,4 +1,4 @@
-import { useUserStoreWithOut } from '@/store/modules/user'
+import { useUserStoreWithOut } from '@store/modules/user'
 
 export function checkStatus(status: number, msg: string): void {
   const userStore = useUserStoreWithOut()

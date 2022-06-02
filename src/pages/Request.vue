@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Http } from '@/utils/axios'
+import { Http } from '@utils/axios'
 import { useRequest } from 'vue-request'
 const httpPost = async () => {
   try {

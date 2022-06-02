@@ -7,11 +7,11 @@ import type { RequestOptions, Result } from '#/axios'
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform'
 import { VAxios } from './Axios'
 import { checkStatus } from './checkStatus'
-import { RequestTypeEnum, ResponseCode, ContentTypeEnum } from '@/enums/httpEnum'
-import { isString } from '@/utils/is'
-import { deepMerge, makeSortStr } from '@/utils'
+import { RequestTypeEnum, ResponseCode, ContentTypeEnum } from '@enums/httpEnum'
+import { isString } from '@utils/is'
+import { deepMerge, makeSortStr } from '@utils/index'
 import { joinTimestamp, joinSign, formatRequestDate } from './helper'
-import { useUserStoreWithOut } from '@/store/modules/user'
+import { useUserStoreWithOut } from '@store/modules/user'
 
 const urlPrefix = import.meta.env.VITE_GLOB_API_URL_PREFIX
 const apiUrl = import.meta.env.VITE_USE_MOCK ? '' : import.meta.env.VITE_GLOB_API_URL

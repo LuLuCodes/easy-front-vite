@@ -1,8 +1,8 @@
 import type { UserInfo } from '#/store'
-import { store } from '@/store'
-import { router } from '@/router'
+import { store } from '@store/index'
+import { router } from '@router/index'
 import UaParser, { IResult as UaResult } from 'ua-parser-js'
-import { Http } from '@/utils/axios'
+import { Http } from '@utils/axios'
 
 interface LoginInfo {
   username: string
